@@ -1,0 +1,3 @@
+--light mode and dark mode
+--pop up window for adding or subtracting (like challeng app)
+--Seperate page for history
