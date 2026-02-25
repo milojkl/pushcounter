@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f59e0b">
+  <title>100 Reps</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>100 Reps</h1>
+      <div id="streak" class="streak">Let’s start a streak!</div>
+    </header>
+
+    <section class="dial-wrap">
+      <!-- SVG Circular Dial -->
+      <svg id="dial" viewBox="0 0 300 300" role="slider" aria-label="Reps dial" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <!-- Track -->
+        <circle cx="150" cy="150" r="110" stroke="rgba(255,255,255,0.08)" stroke-width="26" fill="none" />
+        <!-- Progress (trimmed stroke) -->
+        <circle id="progress" cx="150" cy="150" r="110" stroke="url(#grad)" stroke-width="26" fill="none"
+                stroke-linecap="round" transform="rotate(-90 150 150)" stroke-dasharray="0 9999" />
+        <!-- Thumb -->
+        <circle id="thumb" cx="150" cy="40" r="16" fill="#1c1c1c" stroke="#f59e0b" stroke-width="2" />
+        <!-- Center labels -->
+        <g id="centerText" transform="translate(150,150)" text-anchor="middle">
+          <text id="repsText" y="0" font-size="52" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace">0</text>
+          <text y="24" font-size="14" fill="#bfbfbf" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace">reps</text>
+        </g>
+        <!-- Gradient def (orangey-yellow highlight) -->
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#fbbf24"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="progress-subtext" id="progressPct">0% of daily goal</div>
+    </section>
+
+    <section class="controls">
+      <button class="btn primary" id="plus1">+1</button>
+      <button class="btn outline" id="plus5">+5</button>
+      <button class="btn danger" id="reset">Reset today</button>
+    </section>
+
+    <!-- Minimal History -->
+    <section class="card" id="historyCard">
+      <div class="row space">
+        <h3 class="h3">History (last 30 days)</h3>
+        <div class="row gap">
+          <button class="btn small ghost" id="exportCsv">Export CSV</button>
+          <button class="btn small ghost" id="exportJson">Export JSON</button>
+        </div>
+      </div>
+      <div id="historyChart" class="history-chart"></div>
+      <ul id="historyList" class="history-list"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
